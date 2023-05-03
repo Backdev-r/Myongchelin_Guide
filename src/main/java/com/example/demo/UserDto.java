@@ -6,30 +6,30 @@ import org.springframework.data.annotation.Id;
 public class UserDto {
 
     @Id
-    private String id;
+    private String userId;
 
     @NotBlank
-    private String username;
+    private String nickName;
 
     @NotBlank
-    private String password;
+    private String userPw;
 
 
 
-    public UserDto(String username,String id,String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public UserDto(String nickName,String userId,String userPw) {
+        this.userId = userId;
+        this.nickName = nickName;
+        this.userPw = userPw;
     }
     public String getUsername() {
-        return username;
+        return nickName;
     }
     public String getId() {
-        return id;
+        return userId;
     }
 
     public String getPassword(){
-        return password;
+        return userPw;
     }
 
     // getter, setter, toString

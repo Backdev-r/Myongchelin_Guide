@@ -12,41 +12,41 @@ public class User {
 
 
     @Id
-    private String id;
+    private String userId;
     @NotBlank
-    private String password;
+    private String nickName;
 
     @NotBlank
-    private String username;
+    private String userPw;
 
-    public User(String username,String id,String password){
-        this.username=username;
-        this.password=password;
-        this.id=id;
+    public User(String nickName,String userId,String userPw){
+        this.nickName=nickName;
+        this.userId=userId;
+        this.userPw=userPw;
     }
 
     public String getId() {
-        return id;
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
-        return username;
+        return nickName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getPassword() {
-        return password;
+        return userPw;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.userPw = password;
     }
 
 
