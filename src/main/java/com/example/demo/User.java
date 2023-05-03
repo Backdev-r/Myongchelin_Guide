@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user")
+@Document(collection = "user2")
 public class User {
 
     @Id
@@ -15,7 +15,7 @@ public class User {
     @NotBlank
     private String username;
 
-    public User(String id,String username,String password){
+    public User(String username,String id,String password){
         this.username=username;
         this.password=password;
         this.id=id;
