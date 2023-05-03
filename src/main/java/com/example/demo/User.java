@@ -4,8 +4,12 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user2")
+@Document(collection = "user")
 public class User {
+    //email cerNum nickName userId userPw
+
+
+
 
     @Id
     private String id;

@@ -17,7 +17,7 @@ class MongodbProjectApplicationTests {
 	@Test
 	void testRegisterNewUserAccount() throws EmailExistsException, UsernameExistsException {
 		// given
-		UserDto userDto = new UserDto("2","노무해", "12224");
+		UserDto userDto = new UserDto("하무현","2", "11111");
 
 		// when
 		User savedUser = userService.registerNewUserAccount(userDto);
