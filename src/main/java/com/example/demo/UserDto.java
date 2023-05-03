@@ -5,18 +5,33 @@ import org.springframework.data.annotation.Id;
 
 public class UserDto {
 
+
+    @NotBlank
+    private String email;
+    @NotBlank
+    private String cerNum;
     @Id
     private String userId;
 
     @NotBlank
     private String nickName;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCerNum() {
+        return cerNum;
+    }
+
     @NotBlank
     private String userPw;
 
 
 
-    public UserDto(String nickName,String userId,String userPw) {
+    public UserDto(String email, String cerNum, String nickName, String userId, String userPw) {
+        this.email=email;
+        this.cerNum=cerNum;
         this.userId = userId;
         this.nickName = nickName;
         this.userPw = userPw;

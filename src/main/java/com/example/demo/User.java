@@ -7,6 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "user")
 public class User {
     //email cerNum nickName userId userPw
+    @NotBlank
+    private String email;
+    @NotBlank
+    private String cerNum;
 
 
 
@@ -19,7 +23,18 @@ public class User {
     @NotBlank
     private String userPw;
 
-    public User(String nickName,String userId,String userPw){
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCerNum() {
+        return cerNum;
+    }
+
+    public User(String email, String cerNum, String nickName, String userId, String userPw){
+        this.email=email;
+        this.cerNum=cerNum;
+
         this.nickName=nickName;
         this.userId=userId;
         this.userPw=userPw;

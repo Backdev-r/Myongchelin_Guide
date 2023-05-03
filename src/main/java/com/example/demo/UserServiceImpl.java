@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findByUsername(userDto.getUsername()) != null) {
             throw new UsernameExistsException("Username already exists: " + userDto.getUsername());
         }
-        User user = new User(userDto.getUsername(),userDto.getId(), userDto.getPassword());
+        User user = new User(userDto.getEmail(), userDto.getCerNum(), userDto.getUsername(),userDto.getId(), userDto.getPassword());
         return userRepository.save(user);
     }
 
