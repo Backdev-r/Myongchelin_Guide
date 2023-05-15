@@ -10,7 +10,7 @@ public class UserDto {
     private String email;
     @NotBlank
     private String cerNum;
-    @Id
+    @NotBlank
     private String userId;
 
     @NotBlank

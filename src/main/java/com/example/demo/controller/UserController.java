@@ -26,8 +26,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-    @CrossOrigin(origins = "*")
+   @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         String userId = loginRequest.getUserId();
