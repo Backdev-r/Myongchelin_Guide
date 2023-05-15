@@ -33,7 +33,7 @@ public class UserController {
         String userId = loginRequest.getUserId();
         String pw = loginRequest.getUserPw();
 
-        User user = userRepository.findByUserIdAndPassword(userId, pw);
+        LoginRequest user = userRepository.findByUserIdAndPassword(userId, pw);
         if(user !=null){
             return ResponseEntity.ok("Login successful!");
         }
