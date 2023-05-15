@@ -25,17 +25,24 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     @CrossOrigin(origins = "*")
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         String userId = loginRequest.getUserId();
-        String password = loginRequest.getUserPw();
+        String pw = loginRequest.getUserPw();
 
-        User user = userRepository.findByUsernameAndPassword(userId, password);
-        if (user != null) {
-            return "Login successful";
-        } else {
-            return "fail!!Invalid username or password";
+        User user = userRepository.findByUsernameAndPassword(userId, pw);
+        if(user ==null){
+            return ResponseEntity.ok("Login successful!");
+        }
+        else{
+            return ResponseEntity.ok("sorry,login failed!");
+
         }
     }
-}
+
+
+
+    }
+
