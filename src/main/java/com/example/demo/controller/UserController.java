@@ -30,9 +30,9 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         String userId = loginRequest.getUserId();
-        String pw = loginRequest.getUserPw();
+        String userPw = loginRequest.getUserPw();
 
-        LoginRequest user = userRepository.findByUserIdAndPassword(userId, pw);
+        LoginRequest user = userRepository.findByUserIdAndPassword(userId, userPw);
         if(user !=null){
             return ResponseEntity.ok("Login successful!");
         }

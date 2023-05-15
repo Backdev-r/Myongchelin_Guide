@@ -15,7 +15,7 @@ public class User {
 
 
 
-    @NotBlank
+    @Id
     private String userId;
     @NotBlank
     private String nickName;
