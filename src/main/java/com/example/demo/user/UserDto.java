@@ -2,6 +2,7 @@ package com.example.demo.user;
 
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 public class UserDto {
 
@@ -10,7 +11,8 @@ public class UserDto {
     private String email;
     @NotBlank
     private String cerNum;
-    @NotBlank
+    @Id
+    @Field("_id")
     private String userId;
 
     @NotBlank

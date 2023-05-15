@@ -3,6 +3,7 @@ package com.example.demo.user;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "user")
 public class User {
@@ -15,7 +16,8 @@ public class User {
 
 
 
-    @NotBlank
+    @Id
+    @Field("_id")
     private String userId;
     @NotBlank
     private String nickName;
