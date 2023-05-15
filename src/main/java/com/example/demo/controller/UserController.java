@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class UserController {
             return ResponseEntity.ok("Login successful!");
         }
         else{
-            return ResponseEntity.ok("sorry,login failed!");
+             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Sorry, login failed!");
 
         }
     }
