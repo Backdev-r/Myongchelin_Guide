@@ -28,10 +28,10 @@ public class UserController {
     @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest loginRequest) {
-        String username = loginRequest.getNickName();
+        String userId = loginRequest.getUserId();
         String password = loginRequest.getUserPw();
 
-        User user = userRepository.findByUsernameAndPassword(username, password);
+        User user = userRepository.findByUsernameAndPassword(userId, password);
         if (user != null) {
             return "Login successful";
         } else {

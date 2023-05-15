@@ -2,15 +2,15 @@ package com.example.demo;
 
 public class LoginRequest {
 
-    private String nickName;
+    private String userId;
     private String userPw;
 
-    public String getNickName() {
-        return nickName;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserPw() {
