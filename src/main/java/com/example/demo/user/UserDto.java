@@ -27,7 +27,7 @@ public class UserDto {
     @NotBlank
     private String userPw;
 
-
+    public UserDto(){}
 
     public UserDto(String email, String cerNum, String nickName, String userId, String userPw) {
         this.email=email;
