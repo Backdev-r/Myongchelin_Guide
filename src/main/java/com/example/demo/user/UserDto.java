@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.user;
 
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;

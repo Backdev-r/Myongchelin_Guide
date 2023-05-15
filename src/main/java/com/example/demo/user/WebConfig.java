@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.user;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
