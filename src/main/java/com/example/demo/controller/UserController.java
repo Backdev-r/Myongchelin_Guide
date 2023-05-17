@@ -28,11 +28,11 @@ public class UserController {
     }
    @CrossOrigin(origins = "*")
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
-        String userId = loginRequest.getUserId();
-        String userPw = loginRequest.getUserPw();
+    public ResponseEntity<Object> login(@RequestBody User user1) {
+        String userId = user1.getId();
+        String userPw = user1.getPassword();
 
-        LoginRequest user = userRepository.findByUserIdAndPassword(userId, userPw);
+        User user = userRepository.findByUserIdAndPassword(userId, userPw);
         if(user !=null){
             return ResponseEntity.ok("Login successful!");
         }
