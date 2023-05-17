@@ -37,7 +37,7 @@ public class UserController {
             return ResponseEntity.ok("Login successful!");
         }
         else{
-             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Sorry, login failed!");
+             return ResponseEntity.ok("Sorry, login failed!");
 
         }
     }
