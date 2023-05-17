@@ -18,9 +18,9 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/register")
-    public ResponseEntity<Object> register(@RequestBody UserDto userDto) {
+    public ResponseEntity<Object> register(@RequestBody User user) {
         try {
-            userService.registerNewUserAccount(userDto);
+            userService.registerNewUserAccount(user);
             return ResponseEntity.ok("User registered successfully.");
         } catch (EmailExistsException | UsernameExistsException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
