@@ -17,7 +17,7 @@ public class User {
 
 
     @Id
-    @Field("_id")
+
     private String userId;
     @NotBlank
     private String nickName;
