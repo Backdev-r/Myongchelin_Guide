@@ -22,7 +22,7 @@ public class MongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate() {
-        return new MongoTemplate(mongoClient(), "admin");
+        return new MongoTemplate(mongoClient(), "User");
     }
 }
 
