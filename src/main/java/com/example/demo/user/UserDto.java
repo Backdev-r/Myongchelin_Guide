@@ -4,18 +4,18 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-@Document(collection = "users1")
+
 public class UserDto {
 
 
-    @NotBlank
+
     private String email;
-    @NotBlank
+
     private String cerNum;
-    @Id
+
     private String userId;
 
-    @NotBlank
+
     private String nickName;
 
     public String getEmail() {
@@ -26,7 +26,7 @@ public class UserDto {
         return cerNum;
     }
 
-    @NotBlank
+
     private String userPw;
 
     public UserDto(){}
