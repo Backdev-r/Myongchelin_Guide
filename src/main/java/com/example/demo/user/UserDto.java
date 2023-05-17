@@ -12,7 +12,6 @@ public class UserDto {
     @NotBlank
     private String cerNum;
     @Id
-    @Field("_id")
     private String userId;
 
     @NotBlank
