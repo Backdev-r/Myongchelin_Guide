@@ -23,14 +23,15 @@ public class UserRepositoryImpl implements UserRepository {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public User findByUsername(String username) {
-        Query query = new Query(Criteria.where("nickName").is(username));
+    public User findByUsername(String nickName) {
+        Query query = new Query(Criteria.where("nickName").is(nickName));
+        System.out.println("책ㄷ" + nickName);
         return mongoTemplate.findOne(query, User.class);
     }
 
     @Override
     public User findByUserIdAndPassword(String userId, String userPw) {
-        Query query = new Query(Criteria.where("_id").is(userId).and("userPw").is(userPw));
+        Query query = new Query(Criteria.where("userId").is(userId).and("userPw").is(userPw));
         return mongoTemplate.findOne(query, User.class);
     }
 

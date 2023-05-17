@@ -20,6 +20,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<Object> register(@RequestBody User user) {
         try {
+            System.out.println("네임" + user.getUsername());
             userService.registerNewUserAccount(user);
             return ResponseEntity.ok("User registered successfully.");
         } catch (EmailExistsException | UsernameExistsException e) {

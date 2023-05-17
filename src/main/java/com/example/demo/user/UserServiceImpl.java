@@ -11,9 +11,10 @@ public class UserServiceImpl implements UserService {
     public UserRepository userRepository;
 
     @Override
-    public User registerNewUserAccount(User user) throws EmailExistsException, UsernameExistsException {
+    public User registerNewUserAccount(User user) throws  UsernameExistsException {
         if (userRepository.findByUsername(user.getUsername()) != null) {
-            throw new UsernameExistsException("Username already exists: " + user.getUsername());
+            System.out.println(user.getUsername() + user.getEmail()+user.getPassword());
+            throw new UsernameExistsException("Username already exists :" + user.getUsername() );
         }
         User user1 = new User(user.getEmail(), user.getCerNum(), user.getUsername(),user.getId(), user.getPassword());
         return userRepository.save(user1);
