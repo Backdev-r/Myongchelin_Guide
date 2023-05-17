@@ -12,7 +12,7 @@ public class UserDto {
     @NotBlank
     private String cerNum;
     @Id
-
+    @NotBlank
     private String userId;
 
     @NotBlank
