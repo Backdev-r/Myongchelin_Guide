@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/images")
+@RequestMapping("/api")
 public class ImageController {
     @Autowired
     private final MongoTemplate mongoTemplate;
@@ -22,7 +22,7 @@ public class ImageController {
         this.mongoTemplate = mongoTemplate;
     }
     @CrossOrigin(origins = "*")
-    @GetMapping
+    @GetMapping("/images")
     public List<ImageDocument> getAllReviews() {
         List<ImageDocument> reviews = mongoTemplate.findAll(ImageDocument.class, "Restaurant_Review");
         return reviews;
