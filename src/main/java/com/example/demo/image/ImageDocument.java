@@ -14,8 +14,8 @@ public class ImageDocument {
     private double rate;
     @JsonProperty
     private String image;
-
-    private String NAME;
+    @JsonProperty
+    private String name;
 
     public String getUserId() {
         return userId;
@@ -41,11 +41,11 @@ public class ImageDocument {
         this.rate = rate;
     }
 
-    public ImageDocument(String userId,String contents,double rate,String image,String NAME) {
+    public ImageDocument(String userId,String contents,double rate,String image,String name) {
         this.userId = userId;
         this.contents=contents;
         this.rate=rate;
-        this.NAME = NAME;
+        this.name = name;
         this.image = image;
 
     }
@@ -53,11 +53,11 @@ public class ImageDocument {
 
 
     public String getName() {
-        return NAME;
+        return name;
     }
 
-    public void setName(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getImage() {
