@@ -30,6 +30,7 @@ public class FileController {
 
         for(MultipartFile multipartFile: multipartFileList) {
             String originalName = multipartFile.getOriginalFilename(); // 파일 이름
+            System.out.println(originalName);
             long size = multipartFile.getSize(); // 파일 크기
 
             ObjectMetadata objectMetaData = new ObjectMetadata();
