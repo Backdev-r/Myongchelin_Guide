@@ -26,8 +26,8 @@ public class MongodbProjectApplication  {
 
 	public static void main(String[] args) {
 
-
 		SpringApplication.run(MongodbProjectApplication.class, args);
+
 
 	}
 
