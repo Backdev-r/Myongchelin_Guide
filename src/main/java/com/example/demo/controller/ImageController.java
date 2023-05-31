@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.image.ImageDocument;
+
+import com.example.demo.image.ReviewDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,9 +23,9 @@ public class ImageController {
         this.mongoTemplate = mongoTemplate;
     }
     @CrossOrigin(origins = "*")
-    @GetMapping("/images")
-    public List<ImageDocument> getAllReviews() {
-        List<ImageDocument> reviews = mongoTemplate.findAll(ImageDocument.class, "Restaurant_Review");
+    @GetMapping("/showreviews")  //기존에 /images였는데 바꿈
+    public List<ReviewDocument> getAllReviews() {
+        List<ReviewDocument> reviews = mongoTemplate.findAll(ReviewDocument.class, "Restaurant_Review");
         return reviews;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.image.ImageDocument;
+
+import com.example.demo.image.ReviewDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -23,9 +24,9 @@ public class RecommendController {
     }
     @CrossOrigin(origins = "*")
     @GetMapping("/recommend")
-    public List<ImageDocument> getTopRatedReviews() {
+    public List<ReviewDocument> getTopRatedReviews() {
         Query query = new Query().with(Sort.by(Sort.Direction.DESC, "rate")).limit(4);
-        List<ImageDocument> topRatedReviews = mongoTemplate.find(query, ImageDocument.class, "Restaurant_Review");
+        List<ReviewDocument> topRatedReviews = mongoTemplate.find(query, ReviewDocument.class, "Restaurant_Review");
         return topRatedReviews;
     }
 }

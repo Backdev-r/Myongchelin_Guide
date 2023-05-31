@@ -10,14 +10,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
 public class User {
-    //email cerNum nickName userId userPw
+    // nickName userId userPw
 
-    @JsonProperty
-    @NotBlank
-    private String email;
-    @JsonProperty
-    @NotBlank
-    private String cerNum;
+
+
     @JsonProperty
     @NotBlank
     private String nickName;
@@ -28,9 +24,8 @@ public class User {
     @NotBlank
     private String userPw;
 
-    public User(String email, String cerNum, String nickName, String userId, String userPw){
-        this.email=email;
-        this.cerNum=cerNum;
+    public User( String nickName, String userId, String userPw){
+
 
         this.nickName=nickName;
         this.userId=userId;
@@ -42,21 +37,9 @@ public class User {
     public String getId() {
         return userId;
     }
-    public String getEmail() {
-        return email;
-    }
 
-    public String getCerNum() {
-        return cerNum;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public void setCerNum(String cerNum) {
-        this.cerNum = cerNum;
-    }
 
     public void setId(String userId) {
         this.userId = userId;
