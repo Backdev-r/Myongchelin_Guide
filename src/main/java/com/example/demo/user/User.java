@@ -10,8 +10,14 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
 public class User {
-    // nickName userId userPw
 
+
+
+
+    // nickName userId userPw
+    @JsonProperty
+    @NotBlank
+    private String email;
 
 
     @JsonProperty
@@ -24,9 +30,9 @@ public class User {
     @NotBlank
     private String userPw;
 
-    public User( String nickName, String userId, String userPw){
+    public User( String email,String nickName, String userId, String userPw){
 
-
+        this.email = email;
         this.nickName=nickName;
         this.userId=userId;
         this.userPw=userPw;
@@ -53,15 +59,21 @@ public class User {
         this.nickName = nickName;
     }
 
-    public String getPassword() {
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUserPw() {
         return userPw;
     }
 
-    public void setPassword(String password) {
-        this.userPw = password;
+    public void setUserPw(String userPw) {
+        this.userPw = userPw;
     }
-
-
-
-    // getter, setter, constructor
 }
+

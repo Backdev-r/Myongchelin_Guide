@@ -24,7 +24,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<Object> register(@RequestBody User user) {
         try {
-            System.out.println(user.getUsername());
+            
             userService.registerNewUserAccount(user);
             return ResponseEntity.ok("User registered successfully.");
         } catch (EmailExistsException | UsernameExistsException e) {
@@ -36,7 +36,7 @@ public class UserController {
     public ResponseEntity<Object> login(@RequestBody User user1,  HttpServletRequest request,
                                         HttpServletResponse response) {
         String userId = user1.getId();
-        String userPw = user1.getPassword();
+        String userPw = user1.getUserPw();
        System.out.println(userId);
         User user = userRepository.findByUserIdAndPassword(userId, userPw);
         if(user !=null){

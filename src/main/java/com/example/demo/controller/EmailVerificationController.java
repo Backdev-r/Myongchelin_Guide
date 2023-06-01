@@ -21,7 +21,7 @@ public class EmailVerificationController {
 
 
         try {
-            String apiKey = "2b30351d-dbff-489d-a0d5-14c3f80521c1";//이거 내 api key로 바꾸기
+            String apiKey = "13cd873f-9c5c-48c4-b6bd-eba0f9006dee";//이거 내 api key로 바꾸기
             String email = request.getEmail();
             String universityName = "명지대학교";
             boolean univCheck = true;
