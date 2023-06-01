@@ -60,7 +60,7 @@ public class UserController {
         String userPw = user1.getUserPw();
 
         User user = userRepository.findByUserIdAndPassword(userId, userPw);
-       System.out.println(user.getId() + user.getUserPw());
+
         if(user !=null){
 
 
