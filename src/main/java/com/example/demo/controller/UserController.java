@@ -22,15 +22,15 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/register")
-    public ResponseEntity<Object> register(@RequestBody User user) throws UsernameExistsException, EmailExistsException {
+    public ResponseEntity<Object> register(@RequestBody User user)  {
         boolean isNickNameAvailable = userService.checkNicknameAvailability(user.getUsername());
         boolean isUserIdAvailable = userService.checkUserIdAvailability(user.getId());
         if (!isNickNameAvailable) {
-            return ResponseEntity.badRequest().body("Nickname is already taken");
+            return ResponseEntity.badRequest().body("Nickname is already exists");
         }
 
         if (!isUserIdAvailable) {
-            return ResponseEntity.badRequest().body("userId is already taken");
+            return ResponseEntity.badRequest().body("userId is already exists");
         }
 
         // 중복 확인을 모두 통과한 경우 회원가입 로직 수행

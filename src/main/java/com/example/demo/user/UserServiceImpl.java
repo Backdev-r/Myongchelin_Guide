@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService {
     public UserRepository userRepository;
 
     @Override
-    public User registerNewUserAccount(User user) throws  UsernameExistsException {
+    public User registerNewUserAccount(User user)  {
 
         User user1 = new User(user.getEmail(), user.getUsername(),user.getId(), user.getUserPw());
         return userRepository.save(user1);
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkUserIdAvailability(String id) {
-        User existingUser = userRepository.findByUsername(id);
+        User existingUser = userRepository.findByUserId(id);
         return existingUser == null;
     }
 }
