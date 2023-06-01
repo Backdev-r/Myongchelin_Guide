@@ -18,14 +18,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkNicknameAvailability(String username) {
-        User existingUser = userRepository.findByUsername(username);
+    public boolean checkNicknameAvailability(String nickName) {
+        User existingUser = userRepository.findByUsername(nickName);
+        System.out.println(existingUser);
         return existingUser == null;
     }
 
     @Override
-    public boolean checkUserIdAvailability(String id) {
-        User existingUser = userRepository.findByUserId(id);
+    public boolean checkUserIdAvailability(String userId) {
+        User existingUser = userRepository.findByUserId(userId);
         return existingUser == null;
     }
 }

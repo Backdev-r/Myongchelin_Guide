@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.nickNameRequest;
 import com.example.demo.user.*;
+import com.example.demo.userIdRequest;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,19 +21,30 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/name")
+    public ResponseEntity<Object> namevalidation(@RequestBody nickNameRequest request){ //이부분 중요 요청받을때 객체로 변환시켜야됨
+
+        boolean isNickNameAvailable = userService.checkNicknameAvailability(request.getNickName());
+        if (!isNickNameAvailable) {
+            return ResponseEntity.badRequest().body("닉네임 중복!");
+        }
+        return ResponseEntity.ok("닉네임 검증 통과!");
+    }
+    @CrossOrigin(origins = "*")
+    @PostMapping("/id")
+    public ResponseEntity<Object> idvalidation(@RequestBody userIdRequest request){
+        boolean isUserIdAvailable = userService.checkUserIdAvailability(request.getUserId());
+        if (!isUserIdAvailable ) {
+            return ResponseEntity.badRequest().body("아이디 중복!");
+        }
+        return ResponseEntity.ok("아이디 검증 통과!");
+    }
+
 
     @CrossOrigin(origins = "*")
     @PostMapping("/register")
     public ResponseEntity<Object> register(@RequestBody User user)  {
-        boolean isNickNameAvailable = userService.checkNicknameAvailability(user.getUsername());
-        boolean isUserIdAvailable = userService.checkUserIdAvailability(user.getId());
-        if (!isNickNameAvailable) {
-            return ResponseEntity.badRequest().body("Nickname is already exists");
-        }
-
-        if (!isUserIdAvailable) {
-            return ResponseEntity.badRequest().body("userId is already exists");
-        }
 
         // 중복 확인을 모두 통과한 경우 회원가입 로직 수행
         userService. registerNewUserAccount(user);
