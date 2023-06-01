@@ -12,10 +12,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registerNewUserAccount(User user) throws  UsernameExistsException {
-        if (userRepository.findByUsername(user.getUsername()) != null) {
-            System.out.println(user.getUsername() +user.getUserPw());
-            throw new UsernameExistsException("Username already exists :" + user.getUsername() );
-        }
+
         User user1 = new User(user.getEmail(), user.getUsername(),user.getId(), user.getUserPw());
         return userRepository.save(user1);
-    }}
+    }
+
+    @Override
+    public boolean checkNicknameAvailability(String username) {
+        User existingUser = userRepository.findByUsername(username);
+        return existingUser == null;
+    }
+
+    @Override
+    public boolean checkUserIdAvailability(String id) {
+        User existingUser = userRepository.findByUsername(id);
+        return existingUser == null;
+    }
+}
