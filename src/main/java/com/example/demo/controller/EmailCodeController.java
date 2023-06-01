@@ -20,7 +20,7 @@ public class EmailCodeController {
 
 
         try {
-            String apiKey = "068d308b-3727-41ce-a24a-781136d74fbd";  //이거 내 api key로 바꾸기
+            String apiKey = "13cd873f-9c5c-48c4-b6bd-eba0f9006dee";  //이거 내 api key로 바꾸기
             String email = emailCodecertify.getEmail();
             String universityName = "명지대학교";
             int cerNum = emailCodecertify.getCerNum();
@@ -29,7 +29,7 @@ public class EmailCodeController {
             // 이메일 인증 결과를 확인하여 적절한 응답을 반환할 수 있습니다.
             // 예를 들어, 인증 성공 시에는 HttpStatus.OK와 함께 성공 메시지를 반환할 수 있습니다.
             if(result.get("success").equals(false))
-                return ResponseEntity.badRequest().body("유효하지 않는 코드입니다.");
+                return ResponseEntity.badRequest().body(result.get("message"));
             return ResponseEntity.ok("이메일인증에 성공하였습니다.");
         } catch (IOException e) {
             // 이메일 인증 요청 중에 예외가 발생한 경우, 적절한 예외 처리를 진행할 수 있습니다.
