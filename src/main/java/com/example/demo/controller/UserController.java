@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.nickNameRequest;
 import com.example.demo.user.*;
 import com.example.demo.userIdRequest;
+import com.example.demo.userlogin;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -53,12 +54,13 @@ public class UserController {
     }
    @CrossOrigin(origins = "*")
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody User user1,  HttpServletRequest request
+    public ResponseEntity<Object> login(@RequestBody userlogin user1, HttpServletRequest request
                                         ) {
-        String userId = user1.getId();
+        String userId = user1.getUserId();
         String userPw = user1.getUserPw();
-       System.out.println(userId);
+
         User user = userRepository.findByUserIdAndPassword(userId, userPw);
+       System.out.println(user.getId() + user.getUserPw());
         if(user !=null){
 
 
