@@ -62,7 +62,11 @@ public class UserController {
         User user = userRepository.findByUserIdAndPassword(userId, userPw);
 
         if(user !=null){
-
+// 기존 세션 무효화
+            HttpSession oldSession = request.getSession(false);
+            if (oldSession != null) {
+                oldSession.invalidate();
+            }
 
             // 새로운 세션 생성
             HttpSession newSession = request.getSession(true);
