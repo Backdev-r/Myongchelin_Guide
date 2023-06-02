@@ -43,6 +43,18 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User findByEmail(String email) {
+        Query query = new Query(Criteria.where("email").is(email));
+        return mongoTemplate.findOne(query, User.class);
+    }
+
+    @Override
+    public User findByEmailAndId(String email, String userId) {
+        Query query = new Query(Criteria.where("email").is(email).and("userId").is(userId));
+        return mongoTemplate.findOne(query, User.class);
+    }
+
+    @Override
     public <S extends User> S save(S entity) {
         return mongoTemplate.save(entity);
     }
