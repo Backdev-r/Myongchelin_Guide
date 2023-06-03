@@ -33,19 +33,21 @@ public class FileController {
 
     @CrossOrigin(origins = "*")
     @PostMapping ("/upload")
-    public ResponseEntity<Object> upload(MultipartFile multipart) throws Exception {
+    public ResponseEntity<Object> upload(MultipartFile multipartFileList) throws Exception {
         List<String> imagePathList = new ArrayList<>();
 
-        String originalName = multipart.getOriginalFilename(); // 파일 이름
+        String originalName = multipartFileList.getOriginalFilename(); // 파일 이름
         System.out.println(originalName);
-        long size = multipart.getSize(); // 파일 크기
+        long size = multipartFileList.getSize(); // 파일 크기
+
 
         ObjectMetadata objectMetaData = new ObjectMetadata();
-        objectMetaData.setContentType(multipart.getContentType());
-        objectMetaData.setContentLength(size);
+            objectMetaData.setContentType(multipartFileList.getContentType());
+            objectMetaData.setContentLength(size);
+
             // S3에 업로드
             amazonS3Client.putObject(
-                    new PutObjectRequest(S3Bucket, originalName,multipart.getInputStream(), objectMetaData)
+                    new PutObjectRequest(S3Bucket, originalName, multipartFileList.getInputStream(), objectMetaData)
                             .withCannedAcl(CannedAccessControlList.PublicRead)
             );
 
@@ -61,10 +63,8 @@ public class FileController {
 
 
                 }
-                 }
-        return new ResponseEntity<Object>(imagePathList, HttpStatus.OK);
-
-    }
+            }
+        return new ResponseEntity<Object>(imagePathList, HttpStatus.OK);  }
 
 
 
