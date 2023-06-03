@@ -33,21 +33,19 @@ public class FileController {
 
     @CrossOrigin(origins = "*")
     @PostMapping ("/upload")
-    public ResponseEntity<Object> upload(MultipartFile[] multipartFileList) throws Exception {
+    public ResponseEntity<Object> upload(MultipartFile multipart) throws Exception {
         List<String> imagePathList = new ArrayList<>();
 
-        for(MultipartFile multipartFile: multipartFileList) {
-            String originalName = multipartFile.getOriginalFilename(); // 파일 이름
-            System.out.println(originalName);
-            long size = multipartFile.getSize(); // 파일 크기
+        String originalName = multipart.getOriginalFilename(); // 파일 이름
+        System.out.println(originalName);
+        long size = multipart.getSize(); // 파일 크기
 
-            ObjectMetadata objectMetaData = new ObjectMetadata();
-            objectMetaData.setContentType(multipartFile.getContentType());
-            objectMetaData.setContentLength(size);
-
+        ObjectMetadata objectMetaData = new ObjectMetadata();
+        objectMetaData.setContentType(multipart.getContentType());
+        objectMetaData.setContentLength(size);
             // S3에 업로드
             amazonS3Client.putObject(
-                    new PutObjectRequest(S3Bucket, originalName, multipartFile.getInputStream(), objectMetaData)
+                    new PutObjectRequest(S3Bucket, originalName,multipart.getInputStream(), objectMetaData)
                             .withCannedAcl(CannedAccessControlList.PublicRead)
             );
 
@@ -63,11 +61,13 @@ public class FileController {
 
 
                 }
-            }
-        }
-
+                 }
         return new ResponseEntity<Object>(imagePathList, HttpStatus.OK);
+
     }
+
+
+
     private String getLastReviewIdFromMongoDB() {
         Query query = new Query().with(Sort.by(Sort.Direction.DESC, "_id")).limit(1);
         ReviewDocument lastReview = mongoTemplate.findOne(query, ReviewDocument.class, "Restaurant_Review");

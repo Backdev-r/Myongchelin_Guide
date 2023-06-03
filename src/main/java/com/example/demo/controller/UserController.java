@@ -74,6 +74,7 @@ public class UserController {
             newSession.setMaxInactiveInterval(1800);
 
             Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
+
             cookie.setDomain("52.79.235.187");
             cookie.setPath("/");
             response.addCookie(cookie);
