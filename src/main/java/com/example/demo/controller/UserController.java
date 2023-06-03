@@ -54,8 +54,8 @@ public class UserController {
     }
    @CrossOrigin(origins = "*")
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody userlogin user1, HttpServletRequest request
-                                        ) {
+    public ResponseEntity<Object> login(@RequestBody userlogin user1, HttpServletRequest request,
+        HttpServletResponse response) {
         String userId = user1.getUserId();
         String userPw = user1.getUserPw();
 
@@ -67,16 +67,18 @@ public class UserController {
             if (oldSession != null) {
                 oldSession.invalidate();
             }
-
             // 새로운 세션 생성
             HttpSession newSession = request.getSession(true);
 
             newSession.setAttribute("userId", user.getId());
             newSession.setMaxInactiveInterval(1800);
+
+            Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
+            cookie.setDomain("52.79.235.187");
+            cookie.setPath("/");
+            response.addCookie(cookie);
             Object a =newSession.getId();
             System.out.println(a);
-
-
             return ResponseEntity.ok("Login successful!");
         }
         else{
