@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,12 +74,20 @@ public class UserController {
             newSession.setAttribute("userId", user.getId());
             newSession.setMaxInactiveInterval(1800);
 
-            Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
+            // cookie = new Cookie("JSESSIONID", newSession.getId());
 
-            cookie.setDomain("http://52.79.235.187:8082");
-            cookie.setPath("/");
+            //cookie.setDomain("52.79.235.187");
+            //cookie.setPath("/");
+            ResponseCookie cookie = ResponseCookie.from("JSESSIONID", newSession.getId())
+                    .path("/")
+                    .domain("52.79.235.187")
+                    .httpOnly(true)
+                    .maxAge(60*60*12)
+                    .secure(true)
+                    .sameSite("None")
+                    .build();
 
-            response.addCookie(cookie);
+            response.addHeader("Set-Cookie", cookie.toString());
             Object a =newSession.getId();
             System.out.println(a);
             return ResponseEntity.ok("Login successful!");
