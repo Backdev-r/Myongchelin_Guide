@@ -24,17 +24,10 @@ public class UserPwChangeController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/changePassword")
-    public ResponseEntity<Object> changePassword(@RequestBody UserPwChange userPwChange,
-                                                 HttpServletRequest httpRequest) {
-        String sessionId = getSessionIdFromCookie(httpRequest);
-        if (sessionId == null) {
-            return ResponseEntity.badRequest().body("쿠키에서 세션 ID를 찾을 수 없습니다.");
-        }
-        String userId = getUserIdFromSession(sessionId,httpRequest);
-        if (userId == null) {
-            return ResponseEntity.badRequest().body("유효하지 않은 세션 ID입니다.");
-        }
+    public ResponseEntity<Object> changePassword(@RequestBody UserPwChange userPwChange
+                                                ) {
 
+        String userId= userPwChange.getUserId();
         String userPw = userPwChange.getUserPw();
         System.out.println(userPw);
 
@@ -57,28 +50,6 @@ public class UserPwChangeController {
 
     }
 
-    private String getUserIdFromSession(String sessionId, HttpServletRequest httpRequest) {
-        HttpSession session = httpRequest.getSession(false);
-        if (session != null && session.getId().equals(sessionId)) {
-            Object userId = session.getAttribute("userId");
-            if (userId != null) {
-                return userId.toString();
-            }
-        }
-        return null;
-    }
 
-    private String getSessionIdFromCookie(HttpServletRequest httpRequest) {
-        Cookie[] cookies = httpRequest.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("JSESSIONID")) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-
-    }
 }
 

@@ -1,6 +1,9 @@
 package com.example.demo;
 
 public class UserPwChange {
+
+
+    private String userId;
     private String userPw;
 
     public String getUserPw() {
@@ -9,5 +12,13 @@ public class UserPwChange {
 
     public void setUserPw(String userPw) {
         this.userPw = userPw;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
