@@ -52,7 +52,7 @@ public class UserController {
 
         return ResponseEntity.ok("Signup successful");
     }
-   @CrossOrigin(origins = "http://localhost:3000")
+   @CrossOrigin(origins = "http://localhost:3000/")   //
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody userlogin user1, HttpServletRequest request,
         HttpServletResponse response) {
@@ -73,11 +73,7 @@ public class UserController {
            newSession.setAttribute("userId", user.getId());
            newSession.setMaxInactiveInterval(1800);
 
-           Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
-           cookie.setDomain("52.79.235.187");
-           cookie.setPath("/");
-           response.addCookie(cookie);
-           response.setHeader("Set-Cookie", cookie.toString()); // 응답 헤더에 쿠키 추가
+           // 응답 헤더에 쿠키 추가
 
            Object a = newSession.getId();
            System.out.println(a);
