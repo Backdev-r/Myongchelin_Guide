@@ -22,7 +22,7 @@ public class MyPageController {
     }
     @CrossOrigin(origins = "*")
     @PostMapping("/mypage")
-    public ResponseEntity<Object> getUserProfile(UserIdClass userIdClass){
+    public ResponseEntity<Object> getUserProfile(@RequestBody UserIdClass userIdClass){
 
         // Retrieve user data from MongoDB using the userId
         User user = userRepository.findByUserId(userIdClass.getUserId());
