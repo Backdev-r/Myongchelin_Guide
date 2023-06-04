@@ -1,8 +1,11 @@
 package com.example.demo;
 
-public class userlogin {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class userlogin {
+    @JsonProperty
     private String userId;
+    @JsonProperty
     private String userPw;
 
     public String getUserId() {

@@ -52,45 +52,25 @@ public class UserController {
 
         return ResponseEntity.ok("Signup successful");
     }
-   @CrossOrigin(origins = "http://localhost:3000/")   //
+   @CrossOrigin(origins = "*")   //
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody userlogin user1, HttpServletRequest request,
-        HttpServletResponse response) {
+    public ResponseEntity<Object> login(@RequestBody userlogin user1) {
         String userId = user1.getUserId();
         String userPw = user1.getUserPw();
 
         User user = userRepository.findByUserIdAndPassword(userId, userPw);
 
+
+
+
        if (user != null) {
-           // 기존 세션 무효화
-           HttpSession oldSession = request.getSession(false);
-           if (oldSession != null) {
-               oldSession.invalidate();
-           }
-           // 새로운 세션 생성
-           HttpSession newSession = request.getSession(true);
-
-           newSession.setAttribute("userId", user.getId());
-           newSession.setMaxInactiveInterval(1800);
-// 쿠키를 직접 생성하여 JavaScript에서 조작할 수 있도록 설정
-           Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
-           cookie.setDomain("52.79.235.187");
-           cookie.setPath("/");
-           cookie.setHttpOnly(false); // httponly를 false로 설정
-           response.addCookie(cookie);
-           // 응답 헤더에 쿠키 추가
-
-           Object a = newSession.getId();
-           System.out.println(a);
-           return ResponseEntity.ok("Login successful!");
+           return ResponseEntity.ok(user.getId());
+       } else {
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입부터 시작하세요");
        }
-        else{
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Sorry, login failed!");
-
-        }
-    }
+    }}
 
 
 
-    }
+
 
