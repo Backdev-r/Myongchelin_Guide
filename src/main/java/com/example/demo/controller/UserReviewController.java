@@ -22,49 +22,23 @@ public class UserReviewController {
     }
     @CrossOrigin(origins = "*")
     @PostMapping("/reviews")
-    public ResponseEntity<Object> createReview(@RequestBody ReviewDocument request, HttpServletRequest httpRequest) {
+    public ResponseEntity<Object> createReview(@RequestBody ReviewDocument request) {
         try {
-            // 세션 ID를 쿠키에서 추출
-            String sessionId = getSessionIdFromCookie(httpRequest);
 
-            // 세션 ID를 사용하여 userId를 얻어오기
-            String userId = getUserIdFromSession(sessionId,httpRequest);
 
             // 프론트엔드로부터 받은 데이터를 MongoDB에 저장//String userId, double rate, String contents, String name,String _id
-            ReviewDocument review = new ReviewDocument(userId,  request.getContents(),request.getRate(), request.getName(), request.getImage(),request.getRestid());
+            ReviewDocument review = new ReviewDocument(request.getUserId(),  request.getContents(),request.getRate(), request.getName(), request.getImage(),request.getRestid());
             review.setImage("");
-            review.setUserId(userId);
+
             System.out.println(review.getImage());
             mongoTemplate.save(review, "Restaurant_Review");
 
-            return ResponseEntity.ok("Review created successfully!");
+            return ResponseEntity.ok(review);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create review.");
         }
     }
 
 
-    private String getUserIdFromSession(String sessionId,HttpServletRequest httpRequest) {
-        HttpSession session = httpRequest.getSession(false);
-        if (session != null && session.getId().equals(sessionId)) {
-            Object userId = session.getAttribute("userId");
-            if (userId != null) {
-                return userId.toString();
-            }
-        }
-        return null;
-    }
 
-    private String getSessionIdFromCookie(HttpServletRequest httpRequest) {
-        Cookie[] cookies = httpRequest.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("JSESSIONID")) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-
-    }
 }
