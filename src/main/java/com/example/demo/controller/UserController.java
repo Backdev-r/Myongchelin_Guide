@@ -61,27 +61,28 @@ public class UserController {
 
         User user = userRepository.findByUserIdAndPassword(userId, userPw);
 
-        if(user !=null){
-// 기존 세션 무효화
-            HttpSession oldSession = request.getSession(false);
-            if (oldSession != null) {
-                oldSession.invalidate();
-            }
-            // 새로운 세션 생성
-            HttpSession newSession = request.getSession(true);
+       if (user != null) {
+           // 기존 세션 무효화
+           HttpSession oldSession = request.getSession(false);
+           if (oldSession != null) {
+               oldSession.invalidate();
+           }
+           // 새로운 세션 생성
+           HttpSession newSession = request.getSession(true);
 
-            newSession.setAttribute("userId", user.getId());
-            newSession.setMaxInactiveInterval(1800);
+           newSession.setAttribute("userId", user.getId());
+           newSession.setMaxInactiveInterval(1800);
 
-            Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
+           Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
+           cookie.setDomain("52.79.235.187");
+           cookie.setPath("/");
+           response.addCookie(cookie);
+           response.setHeader("Set-Cookie", cookie.toString()); // 응답 헤더에 쿠키 추가
 
-            cookie.setDomain("52.79.235.187");
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            Object a =newSession.getId();
-            System.out.println(a);
-            return ResponseEntity.ok("Login successful!");
-        }
+           Object a = newSession.getId();
+           System.out.println(a);
+           return ResponseEntity.ok("Login successful!");
+       }
         else{
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Sorry, login failed!");
 
