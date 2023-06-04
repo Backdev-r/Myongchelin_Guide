@@ -6,10 +6,7 @@ import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +20,7 @@ public class MyPageController {
         this.userRepository = userRepository;
     }
     @CrossOrigin(origins = "*")
-    @GetMapping("/mypage")
+    @PostMapping("/mypage")
     public ResponseEntity<Object> getUserProfile(UserIdClass userIdClass){
 
         // Retrieve user data from MongoDB using the userId
