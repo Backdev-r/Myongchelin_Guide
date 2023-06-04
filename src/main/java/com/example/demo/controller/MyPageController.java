@@ -26,6 +26,7 @@ public class MyPageController {
 
         // Retrieve user data from MongoDB using the userId
         User user = userRepository.findByUserId(userIdClass.getUserId());
+        System.out.println(user);
         if (user != null) {
             // Create a response object with email, userId, and nickName
             UserProfileResponse response = new UserProfileResponse(user.getEmail(), user.getId(), user.getUsername());
