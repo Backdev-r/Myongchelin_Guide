@@ -75,9 +75,8 @@ public class UserController {
 
             Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
 
-            cookie.setDomain("52.79.235.187:8082");
+            cookie.setDomain("52.79.235.187");
             cookie.setPath("/");
-
             response.addCookie(cookie);
             Object a =newSession.getId();
             System.out.println(a);
