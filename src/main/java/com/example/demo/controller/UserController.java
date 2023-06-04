@@ -52,7 +52,7 @@ public class UserController {
 
         return ResponseEntity.ok("Signup successful");
     }
-   @CrossOrigin(origins = "http://54.180.87.51:3000")
+   @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody userlogin user1, HttpServletRequest request,
         HttpServletResponse response) {
