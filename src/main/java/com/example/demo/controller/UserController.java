@@ -72,7 +72,12 @@ public class UserController {
 
            newSession.setAttribute("userId", user.getId());
            newSession.setMaxInactiveInterval(1800);
-
+// 쿠키를 직접 생성하여 JavaScript에서 조작할 수 있도록 설정
+           Cookie cookie = new Cookie("JSESSIONID", newSession.getId());
+           cookie.setDomain("52.79.235.187");
+           cookie.setPath("/");
+           cookie.setHttpOnly(false); // httponly를 false로 설정
+           response.addCookie(cookie);
            // 응답 헤더에 쿠키 추가
 
            Object a = newSession.getId();
