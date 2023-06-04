@@ -1,6 +1,10 @@
-package com.example.demo.controller;
+package com.example.demo;
 
 public class UserIdClass {
+
+
+
+    private String userId;
 
     public String getUserId() {
         return userId;
@@ -9,7 +13,5 @@ public class UserIdClass {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
-    private String userId;
 
 }

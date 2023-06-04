@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.UserProfileResponse;
 import com.example.demo.user.User;
+import com.example.demo.UserIdClass;
 import com.example.demo.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
