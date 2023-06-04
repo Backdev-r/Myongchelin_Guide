@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class LikeController {
@@ -28,35 +30,33 @@ public class LikeController {
 
     }
     @PostMapping("/like")
-    public ResponseEntity<Object> like(HttpServletRequest httpRequest, @RequestBody UserLike userLike){
+    public ResponseEntity<Object> like(HttpServletRequest httpRequest, @RequestBody UserLike userLike) {
         String sessionId = getSessionIdFromCookie(httpRequest);
 
-        String userId = getUserIdFromSession(sessionId,httpRequest);
+        String userId = getUserIdFromSession(sessionId, httpRequest);
 
         System.out.println(userId);
 
         String restid = userLike.getRestid();
         Query query = new Query(Criteria.where("userId").is(userId).and("restid").is(restid));
-        Like like = mongoTemplate.findOne(query,  Like.class);
+        List<Like> likes = mongoTemplate.find(query, Like.class);
 
-        if (like != null) {
+        if (!likes.isEmpty()) {
             // 이미 존재하는 데이터인 경우 삭제
-            mongoTemplate.remove(like);
-            return ResponseEntity.ok("찜 등록실패");
-        } else {
+            mongoTemplate.remove(likes);
+            List<Like> updatedLikes1 = mongoTemplate.find(query, Like.class);
+            return ResponseEntity.ok(updatedLikes1);
+        }
+        if (likes.isEmpty()) {
             // 존재하지 않는 데이터인 경우 추가
-            Like like1 = new Like(userId,restid);
-            mongoTemplate.save(like1 );
-            return ResponseEntity.ok(like1 +"찜 등록 성공 ");
+            Like newLike = new Like(userId, restid);
+            mongoTemplate.save(newLike);
+            // 해당 userId와 일치하는 모든 데이터를 조회하여 반환
+            List<Like> updatedLikes = mongoTemplate.find(query, Like.class);
+            return ResponseEntity.ok(updatedLikes);
         }
 
-
-
-
-
-
-
-
+        return null;
     }
 
     private String getUserIdFromSession(String sessionId, HttpServletRequest httpRequest) {
