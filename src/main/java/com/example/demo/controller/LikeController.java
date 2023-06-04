@@ -30,57 +30,31 @@ public class LikeController {
 
     }
     @PostMapping("/like")
-    public ResponseEntity<Object> like(HttpServletRequest httpRequest, @RequestBody UserLike userLike) {
-        String sessionId = getSessionIdFromCookie(httpRequest);
+    public ResponseEntity<Object> like( @RequestBody UserLike userLike) {
 
-        String userId = getUserIdFromSession(sessionId, httpRequest);
-
-        System.out.println(userId);
-
+        String userId = userLike.getUserId();
         String restid = userLike.getRestid();
         Query query = new Query(Criteria.where("userId").is(userId).and("restid").is(restid));
-        List<Like> likes = mongoTemplate.find(query, Like.class);
+        Like likes = mongoTemplate.findOne(query, Like.class);
 
-        if (!likes.isEmpty()) {
+        if (likes!=null) {
             // 이미 존재하는 데이터인 경우 삭제
             mongoTemplate.remove(likes);
-            List<Like> updatedLikes1 = mongoTemplate.find(query, Like.class);
-            return ResponseEntity.ok(updatedLikes1);
+
+            return ResponseEntity.ok("찜 해제완료");
         }
-        if (likes.isEmpty()) {
+
             // 존재하지 않는 데이터인 경우 추가
             Like newLike = new Like(userId, restid);
             mongoTemplate.save(newLike);
             // 해당 userId와 일치하는 모든 데이터를 조회하여 반환
-            List<Like> updatedLikes = mongoTemplate.find(query, Like.class);
-            return ResponseEntity.ok(updatedLikes);
-        }
 
-        return null;
-    }
+            return ResponseEntity.ok("찜 등록 완료");
 
-    private String getUserIdFromSession(String sessionId, HttpServletRequest httpRequest) {
-        HttpSession session = httpRequest.getSession(false);
-        if (session != null && session.getId().equals(sessionId)) {
-            Object userId = session.getAttribute("userId");
-            if (userId != null) {
-                return userId.toString();
-            }
-        }
-        return null;
-    }
 
-    private String getSessionIdFromCookie(HttpServletRequest httpRequest) {
-        Cookie[] cookies = httpRequest.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("JSESSIONID")) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
 
     }
+
+
 
 }
