@@ -24,8 +24,7 @@ public class UserPwChangeController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/changePassword")
-    public ResponseEntity<Object> changePassword(@RequestBody UserPwChange userPwChange
-                                                ) {
+    public ResponseEntity<Object> changePassword(@RequestBody UserPwChange userPwChange) {
 
         String userId= userPwChange.getUserId();
         String userPw = userPwChange.getUserPw();
