@@ -21,8 +21,8 @@ public class EmailVerificationController {
 
 
         try {
-            Map<String, Object> result = UnivCert.clear("13cd873f-9c5c-48c4-b6bd-eba0f9006dee");
-            String apiKey = "13cd873f-9c5c-48c4-b6bd-eba0f9006dee";
+            Map<String, Object> result = UnivCert.clear("068d308b-3727-41ce-a24a-781136d74fbd");
+            String apiKey = "068d308b-3727-41ce-a24a-781136d74fbd";
             String email = request.getEmail();
             String universityName = "명지대학교";
             boolean univCheck = true;
