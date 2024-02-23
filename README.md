@@ -15,3 +15,13 @@
 >
 > 프론트엔드 1명(전재오) & 백엔드 2명(하정민,류제현)
 
+
+
+
+# 데이터베이스 - MongoDB
+
+![데이터베이스](https://github.com/ryu-jaehyun/Myongchelin_Guide/blob/master/images/mongo%20db%20structure.png?raw=true)
+
+# 기술 스택
+
+
