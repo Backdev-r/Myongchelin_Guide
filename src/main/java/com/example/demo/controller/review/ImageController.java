@@ -5,7 +5,9 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.example.demo.document.Review;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.dto.review.ReviewRequest;
+import com.example.demo.repository.ReviewRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -19,20 +21,19 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 @RestController
-@RequestMapping("/review/image")
+@RequiredArgsConstructor
+@RequestMapping("/review")
 public class ImageController {
 
     private String S3Bucket = "bucket123478"; // Bucket 이름
 
-    @Autowired
-    AmazonS3Client amazonS3Client;
-    @Autowired
-    private MongoTemplate mongoTemplate;
-
+    private final AmazonS3Client amazonS3Client;
+    private final MongoTemplate mongoTemplate;
+    private final ReviewRepository reviewRepository;
 
 
     @CrossOrigin(origins = "*")
-    @PostMapping ("/upload")
+    @PostMapping ("/image/upload")
     public ResponseEntity<Object> upload(MultipartFile multipartFileList) throws Exception {
         List<String> imagePathList = new ArrayList<>();
 
@@ -77,9 +78,15 @@ public class ImageController {
         return null;
     }
     @CrossOrigin(origins = "*")
-    @GetMapping("/show")
+    @GetMapping("/show/all")
     public List<Review> getAllReviews() {
         List<Review> reviews = mongoTemplate.findAll(Review.class, "Restaurant_Review");
+        return reviews;
+    }
+    @CrossOrigin(origins = "*")
+    @GetMapping("/show/user")
+    public List<Review> getReviews(@RequestBody ReviewRequest request){
+        List<Review> reviews = reviewRepository.findReviewsByUserId(request.getUserId());
         return reviews;
     }
 }

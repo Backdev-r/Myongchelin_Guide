@@ -69,7 +69,7 @@ public class UserController {
         }
     }
     @CrossOrigin(origins = "*")
-    @PutMapping("/changePassword")
+    @PatchMapping("/changePw")
     public ResponseEntity<Object> changePassword(@RequestBody UserPwChange userPwChange) {
 
         String userId= userPwChange.getUserId();
@@ -96,7 +96,7 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/findid")
+    @PostMapping("/findId")
     public ResponseEntity<String> findUserIdByEmail(@RequestBody RequestId requestId) {
         String email = requestId.getEmail();
         User user = userRepository.findByEmail(email);

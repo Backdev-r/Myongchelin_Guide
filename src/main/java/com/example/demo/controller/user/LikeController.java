@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/review/like")
+@RequestMapping("/user/like")
 public class LikeController {
 
     @Autowired
@@ -49,7 +49,7 @@ public class LikeController {
 
 
     }@CrossOrigin(origins = "*")
-    @GetMapping("/list")
+    @GetMapping("/show")
     public ResponseEntity<Object> like(@RequestBody LikeListClass likeListClass) {
 
         String userId = likeListClass.getUserId();
