@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/user/like")
+@RequestMapping("/restaurant")
 public class RestaurantController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class RestaurantController {
         this.mongoTemplate = mongoTemplate;
 
     }@CrossOrigin(origins = "*")
-    @PostMapping("/add")
+    @PostMapping("/like/add")
     public ResponseEntity<Object> like(@RequestBody UserLike userLike) {
 
         String userId = userLike.getUserId();
@@ -47,7 +47,7 @@ public class RestaurantController {
 
 
     }@CrossOrigin(origins = "*")
-    @GetMapping("/show")
+    @GetMapping("/like/show")
     public ResponseEntity<Object> like(@RequestBody LikeListClass likeListClass) {
 
         String userId = likeListClass.getUserId();
