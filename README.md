@@ -24,7 +24,7 @@
 >
 > Frontend  : 전재오
 > 
-> Backend  : 하정민(AI), 류제현(Server)-PM
+> Backend  : 하정민(AI), 류제현(Server)-PL
 
 
 # 시스템 아키텍쳐
