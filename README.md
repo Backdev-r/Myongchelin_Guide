@@ -29,7 +29,7 @@
 
 # 시스템 아키텍쳐
 
-![시스템 아키텍쳐]
+![시스템 아키텍쳐](https://github.com/ryu-jaehyun/Myongchelin_Guide/blob/master/images/%EB%AA%85%EC%8A%90%EB%9E%AD_%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90.png?raw=true)
 
 
 
