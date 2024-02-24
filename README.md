@@ -33,9 +33,20 @@
 
 ![데이터베이스](https://github.com/ryu-jaehyun/Myongchelin_Guide/blob/master/images/mongo%20db%20structure.png?raw=true)
 
-# 기술 스택
+# 기술 스택 - B.E.
 
-![기술스택](https://github.com/ryu-jaehyun/Myongchelin_Guide/blob/master/images/%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D-%EB%AA%85%EC%8A%90%EB%9E%AD%EA%B0%80%EC%9D%B4%EB%93%9C.png?raw=true)
+<div align=center> 
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white">
+    <img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+<br>
+<img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=Amazon%20EC2&logoColor=white">
+
+<img src="https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=Amazon%20S3&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+
+
+</div>
 
 # 주요기능
 
@@ -82,4 +93,14 @@
 |                |  /review/image/upload |       POST      |       리뷰 사진 첨부       |
 |                |    /review/show/all   |       GET       |     전체 맛집 리뷰 조회    |
 |                |   /review/show/user   |       GET       | 특정 사용자 전체 리뷰 조회 |
+
+
+# 프로젝트 소감
+
+- 첫 협업 프로젝트여서 초반 한달에는 스택을 공부하고 개발하는 경험을 쌓을 수 있어서 뜻깊었다.
+- 
+- 보안 측면에 대해 더 신경을 쓰지 못한 점, 실시간 채팅방을 이용한 맛집탐방패밀리를 만들 수 있게 하는 등 보다 더 다양한 API를 개발하지 못한 점이 아쉬웠다.
+- 
+- 향후 명지대학교 자연캠퍼스 뿐만 아니라 지역을 확장하여 더 다양하고 광범위한 맛집 소개로 발전 가능성이 있다.
+
 
