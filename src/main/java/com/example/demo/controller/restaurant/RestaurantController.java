@@ -1,5 +1,4 @@
-package com.example.demo.controller.user;
-
+package com.example.demo.controller.restaurant;
 
 import com.example.demo.dto.user.Like;
 import com.example.demo.dto.user.LikeListClass;
@@ -12,20 +11,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/user/like")
-public class LikeController {
+public class RestaurantController {
 
     @Autowired
     private final MongoTemplate mongoTemplate;
     @Autowired
-    public LikeController(MongoTemplate mongoTemplate) {
+    public RestaurantController(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
 
     }@CrossOrigin(origins = "*")
     @PostMapping("/add")
-    public ResponseEntity<Object> like( @RequestBody UserLike userLike) {
+    public ResponseEntity<Object> like(@RequestBody UserLike userLike) {
 
         String userId = userLike.getUserId();
         String restid = userLike.getRestid();
@@ -39,12 +37,12 @@ public class LikeController {
             return ResponseEntity.ok("찜 해제완료");
         }
 
-            // 존재하지 않는 데이터인 경우 추가
-            Like newLike = new Like(userId, restid);
-            mongoTemplate.save(newLike);
-            // 해당 userId와 일치하는 모든 데이터를 조회하여 반환
+        // 존재하지 않는 데이터인 경우 추가
+        Like newLike = new Like(userId, restid);
+        mongoTemplate.save(newLike);
+        // 해당 userId와 일치하는 모든 데이터를 조회하여 반환
 
-            return ResponseEntity.ok("찜 등록 완료");
+        return ResponseEntity.ok("찜 등록 완료");
 
 
 
