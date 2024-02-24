@@ -55,9 +55,22 @@
 
 # API 명세서
 
-|Domain|URL|Http Method|Description|
-|:---:|:---:|:---:|:---:|
-|User|/user/id|POST|아이디 중복검증|
-
-
+|   **Domain**   |        **URL**        | **Http Method** |       **Description**      |
+|:--------------:|:---------------------:|:---------------:|:--------------------------:|
+|    **User**    |        /user/id       |       POST      |       아이디 중복검증      |
+|                |       /user/name      |       POST      |       닉네임 중복검증      |
+|                |      /user/email      |       POST      |     명지대 이메일 인증     |
+|                |     /user/register    |       POST      |       사용자 회원가입      |
+|                |      /user/login      |       POST      |        사용자 로그인       |
+|                |      /user/findId     |       POST      |         아이디 찾기        |
+|                |      /user/findPw     |       POST      |        비밀번호 찾기       |
+|                |     /user/changePw    |       POST      |        비밀번호 변경       |
+|                |     /user/my-page     |       POST      |      사용자 정보 조회      |
+| **Restaurant** |  /restaurant/like/add |       POST      |        맛집 찜 등록        |
+|                | /restaurant/like/show |       GET       |  사용자 찜 맛집리스트 조회 |
+|   **Review**   |      /review/add      |       POST      |       맛집 리뷰 추가       |
+|                |   /review/recommend   |       GET       |   상위평점 리뷰 랜덤 조회  |
+|                |  /review/image/upload |       POST      |       리뷰 사진 첨부       |
+|                |    /review/show/all   |       GET       |     전체 맛집 리뷰 조회    |
+|                |   /review/show/user   |       GET       | 특정 사용자 전체 리뷰 조회 |
 
