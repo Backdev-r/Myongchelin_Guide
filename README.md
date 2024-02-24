@@ -84,7 +84,7 @@
 |                |      /user/login      |       POST      |        사용자 로그인       |
 |                |      /user/findId     |       POST      |         아이디 찾기        |
 |                |      /user/findPw     |       POST      |        비밀번호 찾기       |
-|                |     /user/changePw    |       POST      |        비밀번호 변경       |
+|                |     /user/changePw    |       PATCH     |        비밀번호 변경       |
 |                |     /user/my-page     |       POST      |      사용자 정보 조회      |
 | **Restaurant** |  /restaurant/like/add |       POST      |        맛집 찜 등록        |
 |                | /restaurant/like/show |       GET       |  사용자 찜 맛집리스트 조회 |
