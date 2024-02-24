@@ -1,4 +1,6 @@
-![image](https://github.com/ryu-jaehyun/Myongchelin_Guide/blob/master/images/%EB%AA%85%EC%8A%90%EB%9E%AD%EA%B0%80%EC%9D%B4%EB%93%9Clogo.png?raw=true)
+![image](![image](https://github.com/ryu-jaehyun/Myongchelin_Guide/assets/132364203/29dbe9ad-de1e-482d-bb3a-48afaa759d8e)
+)
+
 
 
 
