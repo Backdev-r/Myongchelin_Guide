@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok("Signup successful");
     }
     @CrossOrigin(origins = "*")
-    @PostMapping("/findpw")
+    @PostMapping("/findPw")
     public ResponseEntity<String> findUserPwById(@RequestBody RequestPw requestPw) {
         String userId = requestPw.getUserId();
         String userEmail = requestPw.getEmail();
