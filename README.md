@@ -27,9 +27,13 @@
 > Backend  : 하정민(AI), 류제현(Server)-PM
 
 
+# 시스템 아키텍쳐
 
 
-# 데이터베이스 - MongoDB
+
+
+
+# 데이터베이스
 
 ![데이터베이스](https://github.com/ryu-jaehyun/Myongchelin_Guide/blob/master/images/mongo%20db%20structure.png?raw=true)
 
