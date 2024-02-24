@@ -55,4 +55,9 @@
 
 # API 명세서
 
+|Domain|URL|Http Method|Description|
+|:---:|:---:|:---:|:---:|
+|User|/user/id|POST|아이디 중복검증|
+
+
 
