@@ -1,10 +1,12 @@
 package com.example.demo.dto.user;
 
+import lombok.Data;
+
+@Data
 public class UserProfileResponse {
 
     private String email;
     private String userId;
-
 
 
     private String nickName;
@@ -12,7 +14,7 @@ public class UserProfileResponse {
     public UserProfileResponse(String email, String userId, String nickName) {
         this.email = email;
         this.userId = userId;
-        this.nickName=nickName;
+        this.nickName = nickName;
     }
 
     public String getEmail() {
@@ -30,6 +32,7 @@ public class UserProfileResponse {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
     public String getNickName() {
         return nickName;
     }

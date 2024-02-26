@@ -1,9 +1,9 @@
 package com.example.demo.dto.user;
 
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
 
-
+@Data
 public class LikeListClass {
 
     public String getUserId() {

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/review")
@@ -33,7 +34,7 @@ public class ImageController {
 
 
     @CrossOrigin(origins = "*")
-    @PostMapping ("/image/upload")
+    @PostMapping("/image/upload")
     public ResponseEntity<Object> upload(MultipartFile multipartFileList) throws Exception {
         List<String> imagePathList = new ArrayList<>();
 
@@ -43,30 +44,26 @@ public class ImageController {
 
 
         ObjectMetadata objectMetaData = new ObjectMetadata();
-            objectMetaData.setContentType(multipartFileList.getContentType());
-            objectMetaData.setContentLength(size);
+        objectMetaData.setContentType(multipartFileList.getContentType());
+        objectMetaData.setContentLength(size);
 
-            // S3에 업로드
-            amazonS3Client.putObject(
-                    new PutObjectRequest(S3Bucket, originalName, multipartFileList.getInputStream(), objectMetaData)
-                            .withCannedAcl(CannedAccessControlList.PublicRead)
-            );
+        // S3에 업로드
+        amazonS3Client.putObject(new PutObjectRequest(S3Bucket, originalName, multipartFileList.getInputStream(), objectMetaData).withCannedAcl(CannedAccessControlList.PublicRead));
 
-            String imagePath = amazonS3Client.getUrl(S3Bucket, originalName).toString(); // 접근가능한 URL 가져오기
-            imagePathList.add(imagePath);
-            if (!imagePathList.isEmpty()) {
-                // 마지막 리뷰 데이터에 이미지 URL 저장
-                String lastReviewId = getLastReviewIdFromMongoDB();
-                if (lastReviewId != null) {
-                    Query query = new Query(Criteria.where("_id").is(lastReviewId));
-                    mongoTemplate.updateFirst(query, new Update().set("image", imagePathList.get(0)), "Restaurant_Review");
+        String imagePath = amazonS3Client.getUrl(S3Bucket, originalName).toString(); // 접근가능한 URL 가져오기
+        imagePathList.add(imagePath);
+        if (!imagePathList.isEmpty()) {
+            // 마지막 리뷰 데이터에 이미지 URL 저장
+            String lastReviewId = getLastReviewIdFromMongoDB();
+            if (lastReviewId != null) {
+                Query query = new Query(Criteria.where("_id").is(lastReviewId));
+                mongoTemplate.updateFirst(query, new Update().set("image", imagePathList.get(0)), "Restaurant_Review");
 
 
-
-                }
             }
-        return new ResponseEntity<Object>(imagePathList, HttpStatus.OK);  }
-
+        }
+        return new ResponseEntity<Object>(imagePathList, HttpStatus.OK);
+    }
 
 
     private String getLastReviewIdFromMongoDB() {
@@ -77,15 +74,17 @@ public class ImageController {
         }
         return null;
     }
+
     @CrossOrigin(origins = "*")
     @GetMapping("/show/all")
     public List<Review> getAllReviews() {
         List<Review> reviews = mongoTemplate.findAll(Review.class, "Restaurant_Review");
         return reviews;
     }
+
     @CrossOrigin(origins = "*")
     @GetMapping("/show/user")
-    public List<Review> getReviews(@RequestBody ReviewRequest request){
+    public List<Review> getReviews(@RequestBody ReviewRequest request) {
         List<Review> reviews = reviewRepository.findReviewsByUserId(request.getUserId());
         return reviews;
     }

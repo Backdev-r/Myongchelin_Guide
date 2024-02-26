@@ -29,7 +29,7 @@ public class EmailVerificationController {
 
             // 이메일 인증 결과를 확인하여 적절한 응답을 반환할 수 있습니다.
             // 예를 들어, 인증 성공 시에는 HttpStatus.OK와 함께 성공 메시지를 반환할 수 있습니다.
-            if(result1.get("success").equals(false))
+            if (result1.get("success").equals(false))
                 return ResponseEntity.badRequest().body("이메일 인증이 실패하였거나 일일 시도가능 횟수 초과입니다.");
             return ResponseEntity.ok("인증메일이 발송되었습니다.");
         } catch (IOException e) {

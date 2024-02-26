@@ -1,11 +1,12 @@
 package com.example.demo.dto.user;
 
+import lombok.Data;
+
+@Data
+
 public class EmailVerificationRequest {
 
     private String email;
-
-
-    // 생성자, 게터 및 세터 생략
 
 
     public String getEmail() {

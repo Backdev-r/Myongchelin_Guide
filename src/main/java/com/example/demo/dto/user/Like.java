@@ -1,10 +1,10 @@
 package com.example.demo.dto.user;
 
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-
+@Data
 public class Like {
 
     @Id
@@ -14,8 +14,8 @@ public class Like {
     private String restid;
 
     public Like(String userId, String restid) {
-        this.restid=restid;
-        this.userId=userId;
+        this.restid = restid;
+        this.userId = userId;
     }
 
     public String getUserId() {

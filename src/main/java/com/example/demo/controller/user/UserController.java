@@ -25,7 +25,7 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/name")
-    public ResponseEntity<Object> namevalidation(@RequestBody nickNameRequest request){ //이부분 중요 요청받을때 객체로 변환시켜야됨
+    public ResponseEntity<Object> namevalidation(@RequestBody nickNameRequest request) {
 
         boolean isNickNameAvailable = userService.checkNicknameAvailability(request.getNickName());
         if (!isNickNameAvailable) {
@@ -33,11 +33,12 @@ public class UserController {
         }
         return ResponseEntity.ok("닉네임 검증 통과!");
     }
+
     @CrossOrigin(origins = "*")
     @PostMapping("/id")
-    public ResponseEntity<Object> idvalidation(@RequestBody userIdRequest request){
+    public ResponseEntity<Object> idvalidation(@RequestBody userIdRequest request) {
         boolean isUserIdAvailable = userService.checkUserIdAvailability(request.getUserId());
-        if (!isUserIdAvailable ) {
+        if (!isUserIdAvailable) {
             return ResponseEntity.badRequest().body("아이디 중복!");
         }
         return ResponseEntity.ok("아이디 검증 통과!");
@@ -46,33 +47,35 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/register")
-    public ResponseEntity<Object> register(@RequestBody User user)  {
+    public ResponseEntity<Object> register(@RequestBody User user) {
 
         // 중복 확인을 모두 통과한 경우 회원가입 로직 수행
-        userService. registerNewUserAccount(user);
+        userService.registerNewUserAccount(user);
 
         return ResponseEntity.ok("Signup successful");
     }
+
     @CrossOrigin(origins = "*")
     @PostMapping("/findPw")
     public ResponseEntity<String> findUserPwById(@RequestBody RequestPw requestPw) {
         String userId = requestPw.getUserId();
         String userEmail = requestPw.getEmail();
 
-        User user  = userRepository.findByEmailAndId(userEmail,userId);
+        User user = userRepository.findByEmailAndId(userEmail, userId);
 
         if (user != null) {
             String userPw = user.getUserPw();
-            return ResponseEntity.ok("password :" +userPw);
+            return ResponseEntity.ok("password :" + userPw);
         } else {
             return ResponseEntity.badRequest().body("아이디 혹은 이메일을 다시입력해주세요");
         }
     }
+
     @CrossOrigin(origins = "*")
     @PatchMapping("/changePw")
     public ResponseEntity<Object> changePassword(@RequestBody UserPwChange userPwChange) {
 
-        String userId= userPwChange.getUserId();
+        String userId = userPwChange.getUserId();
         String userPw = userPwChange.getUserPw();
         System.out.println(userPw);
 
@@ -103,12 +106,13 @@ public class UserController {
 
         if (user != null) {
             String userId = user.getId();
-            return ResponseEntity.ok("id :" +userId);
+            return ResponseEntity.ok("id :" + userId);
         } else {
             return ResponseEntity.badRequest().body("이메일을 다시 입력해주세요");
         }
     }
-   @CrossOrigin(origins = "*")   //
+
+    @CrossOrigin(origins = "*")   //
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody userlogin user1) {
         String userId = user1.getUserId();
@@ -117,14 +121,13 @@ public class UserController {
         User user = userRepository.findByUserIdAndPassword(userId, userPw);
 
 
-
-
-       if (user != null) {
-           return ResponseEntity.ok(user.getId());
-       } else {
-           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입부터 시작하세요");
-       }
-    }}
+        if (user != null) {
+            return ResponseEntity.ok(user.getId());
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입부터 시작하세요");
+        }
+    }
+}
 
 
 

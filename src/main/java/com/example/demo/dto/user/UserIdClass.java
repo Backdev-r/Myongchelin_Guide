@@ -1,7 +1,9 @@
 package com.example.demo.dto.user;
 
-public class UserIdClass {
+import lombok.Data;
 
+@Data
+public class UserIdClass {
 
 
     private String userId;

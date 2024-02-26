@@ -3,7 +3,7 @@ package com.example.demo.service;
 
 import com.example.demo.document.User;
 
-public interface UserService  {
+public interface UserService {
 
     User registerNewUserAccount(User user);
 

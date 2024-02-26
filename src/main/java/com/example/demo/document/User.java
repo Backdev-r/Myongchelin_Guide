@@ -2,19 +2,12 @@ package com.example.demo.document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
 public class User {
 
 
-
-
-    // nickName userId userPw
     @JsonProperty
     @NotBlank
     private String email;
@@ -30,21 +23,20 @@ public class User {
     @NotBlank
     private String userPw;
 
-    public User( String email,String nickName, String userId, String userPw){
+    public User(String email, String nickName, String userId, String userPw) {
 
         this.email = email;
-        this.nickName=nickName;
-        this.userId=userId;
-        this.userPw=userPw;
+        this.nickName = nickName;
+        this.userId = userId;
+        this.userPw = userPw;
     }
+
     public User() {
     }
 
     public String getId() {
         return userId;
     }
-
-
 
 
     public void setId(String userId) {

@@ -22,6 +22,7 @@ public class RecommendController {
     public RecommendController(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
+
     @CrossOrigin(origins = "*")
     @GetMapping("/recommend")
     public List<Review> getTopRatedReviews() {

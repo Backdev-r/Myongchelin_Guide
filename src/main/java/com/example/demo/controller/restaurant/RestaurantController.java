@@ -11,17 +11,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
 
     @Autowired
     private final MongoTemplate mongoTemplate;
+
     @Autowired
     public RestaurantController(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
 
-    }@CrossOrigin(origins = "*")
+    }
+
+    @CrossOrigin(origins = "*")
     @PostMapping("/like/add")
     public ResponseEntity<Object> like(@RequestBody UserLike userLike) {
 
@@ -30,7 +34,7 @@ public class RestaurantController {
         Query query = new Query(Criteria.where("userId").is(userId).and("restid").is(restid));
         Like likes = mongoTemplate.findOne(query, Like.class);
 
-        if (likes!=null) {
+        if (likes != null) {
             // 이미 존재하는 데이터인 경우 삭제
             mongoTemplate.remove(likes);
 
@@ -45,8 +49,9 @@ public class RestaurantController {
         return ResponseEntity.ok("찜 등록 완료");
 
 
+    }
 
-    }@CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*")
     @GetMapping("/like/show")
     public ResponseEntity<Object> like(@RequestBody LikeListClass likeListClass) {
 
@@ -58,7 +63,6 @@ public class RestaurantController {
         return ResponseEntity.ok(likes);
 
     }
-
 
 
 }

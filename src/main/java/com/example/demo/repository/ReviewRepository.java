@@ -15,6 +15,7 @@ public class ReviewRepository {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
     public List<Review> findReviewsByUserId(String userId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(userId));

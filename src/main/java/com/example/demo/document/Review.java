@@ -10,12 +10,12 @@ public class Review {
 
     public Review() {
     }
+
     @Id
     private String _id; // 몽고DB의 고유식별자인 _id 필드
     private String userId;
     private String contents;
     private double rate;
-
 
 
     private String image;
@@ -27,7 +27,7 @@ public class Review {
         this.userId = userId;
         this.contents = contents;
         this.rate = rate;
-        this.image=image;
+        this.image = image;
         this.name = name;
         this.restid = restid;
     }
@@ -71,6 +71,7 @@ public class Review {
     public void setRestid(String id) {
         this.restid = id;
     }
+
     public String getImage() {
         return image;
     }
@@ -79,7 +80,7 @@ public class Review {
         this.image = image;
     }
 
-    public String get_id(){
+    public String get_id() {
         return _id;
     }
 
