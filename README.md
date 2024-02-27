@@ -18,7 +18,7 @@
 > Spring Boot를 사용해 기본적인 REST API를 구현하고, AWS Ec2, S3 등을 이용해 서버를 배포했습니다.
 
 
-  vv                                                                                                                                                                                                     
+                                                                                                                                                                                                      
 
 
 # 시스템 아키텍쳐
