@@ -30,7 +30,7 @@ public class ImageController {
 
     private final AmazonS3Client amazonS3Client;
     private final MongoTemplate mongoTemplate;
-    private final ReviewRepository reviewRepository;
+
 
 
     @CrossOrigin(origins = "*")
@@ -75,18 +75,6 @@ public class ImageController {
         return null;
     }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/show/all")
-    public List<Review> getAllReviews() {
-        List<Review> reviews = mongoTemplate.findAll(Review.class, "Restaurant_Review");
-        return reviews;
-    }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping("/show/user")
-    public List<Review> getReviews(@RequestBody ReviewRequest request) {
-        List<Review> reviews = reviewRepository.findReviewsByUserId(request.getUserId());
-        return reviews;
-    }
 }
 

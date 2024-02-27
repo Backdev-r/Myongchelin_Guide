@@ -1,22 +1,26 @@
 package com.example.demo.controller.review;
 
 import com.example.demo.document.Review;
+import com.example.demo.dto.review.ReviewRequest;
+import com.example.demo.repository.ReviewRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/review")
+@RequiredArgsConstructor
 public class UserReviewController {
     @Autowired
     private final MongoTemplate mongoTemplate;
-
     @Autowired
-    public UserReviewController(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
-    }
+    private final ReviewRepository reviewRepository;
+
 
     @CrossOrigin(origins = "*")
     @PostMapping("/add")
@@ -35,6 +39,19 @@ public class UserReviewController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create review.");
         }
+    }
+    @CrossOrigin(origins = "*")
+    @GetMapping("/show/all")
+    public List<Review> getAllReviews() {
+        List<Review> reviews = mongoTemplate.findAll(Review.class, "Restaurant_Review");
+        return reviews;
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/show/user")
+    public List<Review> getReviews(@RequestBody ReviewRequest request) {
+        List<Review> reviews = reviewRepository.findReviewsByUserId(request.getUserId());
+        return reviews;
     }
 
 
