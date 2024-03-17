@@ -12,7 +12,7 @@ public class CorsFilterConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*");
+        config.addAllowedOrigin("http://ec2-12-137-31-121.ap-northeast-2.compute.amazonaws.com:3000/\"");
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
 

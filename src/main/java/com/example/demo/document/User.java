@@ -43,7 +43,7 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUsername() {
+    public String getNickName() {
         return nickName;
     }
 
