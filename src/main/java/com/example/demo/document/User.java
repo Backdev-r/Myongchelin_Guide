@@ -13,7 +13,7 @@ public class User {
     private String email;
 
 
-    @JsonProperty
+    @JsonProperty("nick_name")
     @NotBlank
     private String nickName;
     @JsonProperty
