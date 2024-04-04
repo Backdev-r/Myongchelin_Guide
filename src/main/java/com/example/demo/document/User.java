@@ -8,18 +8,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
 
-    @JsonProperty
     @NotBlank
     private String email;
 
 
-    @JsonProperty
+
     @NotBlank
     private String nickName;
-    @JsonProperty
+
     @NotBlank
     private String userId;
-    @JsonProperty
+
     @NotBlank
     private String userPw;
 
