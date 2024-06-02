@@ -1,6 +1,6 @@
 package com.example.demo.controller.review;
 
-import com.example.demo.document.Review;
+import com.example.demo.Entity.Review;
 import com.example.demo.dto.review.ReviewRequest;
 import com.example.demo.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;

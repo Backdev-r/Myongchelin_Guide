@@ -1,8 +1,11 @@
-package com.example.demo.document;
+package com.example.demo.Entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Document(collection = "users")
 public class User {
@@ -22,12 +25,14 @@ public class User {
     @NotBlank
     private String userPw;
 
+    private List<String> likedRestaurantIds;
     public User(String email, String nickName, String userId, String userPw) {
 
         this.email = email;
         this.nickName = nickName;
         this.userId = userId;
         this.userPw = userPw;
+        this.likedRestaurantIds = null;  // 초기값으로 null 설정
     }
 
     public User() {
@@ -65,6 +70,20 @@ public class User {
 
     public void setUserPw(String userPw) {
         this.userPw = userPw;
+    }
+    public void addLikedRestaurantId(String restaurantId) {
+        if (this.likedRestaurantIds == null) {
+            this.likedRestaurantIds = new ArrayList<>();
+        }
+        if (!this.likedRestaurantIds.contains(restaurantId)) {
+            this.likedRestaurantIds.add(restaurantId);
+        }
+    }
+
+    public void removeLikedRestaurantId(String restaurantId) {
+        if (this.likedRestaurantIds != null) {
+            this.likedRestaurantIds.remove(restaurantId);
+        }
     }
 }
 

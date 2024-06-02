@@ -1,7 +1,7 @@
 package com.example.demo.controller.user;
 
 
-import com.example.demo.document.User;
+import com.example.demo.Entity.User;
 import com.example.demo.dto.user.UserIdClass;
 import com.example.demo.dto.user.UserProfileResponse;
 import com.example.demo.repository.UserRepository;

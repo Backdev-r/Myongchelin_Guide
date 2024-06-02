@@ -1,9 +1,11 @@
-package com.example.demo.dto.user;
+package com.example.demo.Entity;
 
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "Like")
 @Data
 public class Like {
 

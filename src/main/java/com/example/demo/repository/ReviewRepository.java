@@ -1,7 +1,7 @@
 package com.example.demo.repository;
 
 
-import com.example.demo.document.Review;
+import com.example.demo.Entity.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;

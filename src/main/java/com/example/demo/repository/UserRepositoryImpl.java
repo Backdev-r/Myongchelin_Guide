@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.document.User;
+import com.example.demo.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.document.User;
+import com.example.demo.Entity.Restaurant;
+import com.example.demo.Entity.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,5 +32,10 @@ public class UserServiceImpl implements UserService {
     public boolean checkUserIdAvailability(String userId) {
         User existingUser = userRepository.findByUserId(userId);
         return existingUser == null;
+    }
+
+    @Override
+    public List<Restaurant> getLikedRestaurants(String username) {
+        return null;
     }
 }

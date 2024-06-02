@@ -1,6 +1,7 @@
 package com.example.demo.controller.user;
 
-import com.example.demo.document.User;
+import com.example.demo.Entity.Restaurant;
+import com.example.demo.Entity.User;
 import com.example.demo.dto.user.*;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
@@ -12,6 +13,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -112,7 +115,7 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "*")   //
+    @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody userlogin user1) {
         String userId = user1.getUserId();
@@ -126,6 +129,12 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입부터 시작하세요");
         }
+    }
+    @CrossOrigin(origins = "*")
+    @GetMapping("/{username}/likes")
+    public ResponseEntity<List<Restaurant>> getLikedRestaurants(@PathVariable String username) {
+        List<Restaurant> likedRestaurants = userService.getLikedRestaurants(username);
+        return ResponseEntity.ok(likedRestaurants);
     }
 }
 

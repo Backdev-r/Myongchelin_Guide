@@ -1,8 +1,9 @@
 package com.example.demo.controller.restaurant;
 
-import com.example.demo.dto.user.Like;
+import com.example.demo.Entity.Like;
 import com.example.demo.dto.user.LikeListClass;
 import com.example.demo.dto.user.UserLike;
+import com.example.demo.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -17,51 +18,20 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    private final MongoTemplate mongoTemplate;
-
-    @Autowired
-    public RestaurantController(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
-
-    }
+    private RestaurantService restaurantService;
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/like/add")
-    public ResponseEntity<Object> like(@RequestBody UserLike userLike) {
-
-        String userId = userLike.getUserId();
-        String restid = userLike.getRestid();
-        Query query = new Query(Criteria.where("userId").is(userId).and("restid").is(restid));
-        Like likes = mongoTemplate.findOne(query, Like.class);
-
-        if (likes != null) {
-            // 이미 존재하는 데이터인 경우 삭제
-            mongoTemplate.remove(likes);
-
-            return ResponseEntity.ok("찜 해제완료");
-        }
-
-        // 존재하지 않는 데이터인 경우 추가
-        Like newLike = new Like(userId, restid);
-        mongoTemplate.save(newLike);
-        // 해당 userId와 일치하는 모든 데이터를 조회하여 반환
-
+    @PostMapping("/{restaurantId}/like")
+    public ResponseEntity<String> likeRestaurant(@PathVariable String restaurantId, @RequestBody UserLike userLike) {
+        restaurantService.addLiker(restaurantId, userLike.getUserId());
         return ResponseEntity.ok("찜 등록 완료");
-
-
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/like/show")
-    public ResponseEntity<Object> like(@RequestBody LikeListClass likeListClass) {
-
-        String userId = likeListClass.getUserId();
-
-        Query query = new Query(Criteria.where("userId").is(userId));
-        List<Like> likes = mongoTemplate.find(query, Like.class);
-
-        return ResponseEntity.ok(likes);
-
+    @PostMapping("/{restaurantId}/unlike")
+    public ResponseEntity<String> unlikeRestaurant(@PathVariable String restaurantId, @RequestBody UserLike userLike) {
+        restaurantService.removeLiker(restaurantId, userLike.getUserId());
+        return ResponseEntity.ok("찜 해제 완료");
     }
 
 
