@@ -1,17 +1,10 @@
 package com.example.demo.controller.restaurant;
 
-import com.example.demo.Entity.Like;
-import com.example.demo.dto.user.LikeListClass;
 import com.example.demo.dto.user.UserLike;
 import com.example.demo.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/restaurant")
